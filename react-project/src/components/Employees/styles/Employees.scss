@@ -1,0 +1,18 @@
+.employees-container {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .reset-btn {
+    margin-bottom: 32px;
+    align-self: flex-end;
+    background-color: #00ffff;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .reset-btn:hover {
+    background-color: #2cf0f0;
+    color: black;
+  }
+}

@@ -6,9 +6,7 @@ import { findPair } from "./utilities";
 import "./styles/DropBox.scss";
 
 type DropBoxProps = {
-  setCommonWorkerCouple: Dispatch<
-    SetStateAction<CommonWorkerCouple | undefined>
-  >;
+  setCommonWorkerCouple: Dispatch<SetStateAction<CommonWorkerCouple | null>>;
 };
 
 export const DropBox: FC<DropBoxProps> = ({ setCommonWorkerCouple }) => {

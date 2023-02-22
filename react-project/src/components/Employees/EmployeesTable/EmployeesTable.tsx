@@ -1,16 +1,22 @@
 import { Column } from "primereact/column";
-import { DataTable } from "primereact/datatable";
-import { FC } from "react";
+import { DataTable, DataTableStateEvent } from "primereact/datatable";
+import { FC, useState } from "react";
 import { CommonWorkerCouple, dayInMs } from "../DropBox/constants";
 import "./styles/EmployeesTable.scss";
 
 type EmployeesTableProps = {
-  commonWorkerCouple?: CommonWorkerCouple;
+  commonWorkerCouple: CommonWorkerCouple | null;
 };
 
 export const EmployeesTable: FC<EmployeesTableProps> = ({
   commonWorkerCouple,
 }) => {
+  const [projects, setProjects] = useState<[string, number][]>(
+    Array.from(commonWorkerCouple?.commonWorkedTime.projects!)
+  );
+
+  const [sortOrder, setSortOrder] = useState<0 | 1 | -1 | null | undefined>(0);
+
   const employee1IdColumn = () => {
     return <>{commonWorkerCouple?.emp1Id}</>;
   };
@@ -27,9 +33,23 @@ export const EmployeesTable: FC<EmployeesTableProps> = ({
     return <>{Math.ceil((project[1] as number) / dayInMs)}</>;
   };
 
+  const onSort = (event: DataTableStateEvent) => {
+    if (event.sortField === "DaysWorked") {
+      if (sortOrder === 1) {
+        setProjects(projects.sort((a, b) => b[1] - a[1]));
+        setSortOrder(-1);
+      } else {
+        setProjects(projects.sort((a, b) => a[1] - b[1]));
+        setSortOrder(1);
+      }
+    }
+  };
+
   return (
     <DataTable
-      value={Array.from(commonWorkerCouple?.commonWorkedTime.projects!)}
+      onSort={onSort}
+      sortOrder={sortOrder}
+      value={projects}
       className="employees-table"
       stripedRows
     >
@@ -47,6 +67,7 @@ export const EmployeesTable: FC<EmployeesTableProps> = ({
       <Column
         field="DaysWorked"
         header="Days Worked Together"
+        sortable
         body={totalCommonWorkedDaysColumn}
       />
     </DataTable>
