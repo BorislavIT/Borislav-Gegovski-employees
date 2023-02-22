@@ -1,6 +1,6 @@
 export type CommonWorkTimeAndCommonProjectsList = {
   time: number;
-  projects: string[];
+  projects: Map<string, number>;
 };
 
 export type EmployeeData = {
@@ -8,7 +8,6 @@ export type EmployeeData = {
   ProjectId: string;
   StartDate: string;
   EndDate: string | null;
-  DaysWorked: number;
 };
 
 export class CommonWorkerCouple {

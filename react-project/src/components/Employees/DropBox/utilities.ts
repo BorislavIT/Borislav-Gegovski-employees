@@ -68,17 +68,18 @@ export const findPairWithLongestCommonWorkTime = (
 
       const empMap = mapOfEmployeeTotalTimes.get(EmployeeId);
       const commonData = empMap?.get(secondEmpId);
-      if (!empMap?.get(secondEmpId)) {
+      if (!commonData) {
+        const newProjectsMap = new Map<string, number>();
+        newProjectsMap.set(secondProjectId, difference);
         empMap?.set(secondEmpId, {
           time: difference,
-          projects: [secondProjectId],
+          projects: newProjectsMap,
         });
       } else {
+        commonData?.projects.set(secondProjectId, commonData?.projects.get(secondProjectId) ?? 0 + difference)
         empMap?.set(secondEmpId, {
           time: (commonData?.time ?? 0) + difference,
-          projects: [
-            ...new Set([...commonData?.projects!, secondProjectId]),
-          ],
+          projects: commonData?.projects!,
         });
       }
     });
@@ -110,18 +111,9 @@ export const findPair = (csvData: EmployeeData[]): EmployeeData[] => {
     });
   });
 
-  return csvData.filter((empData) => {
-    if (
-      (empData.EmployeeId === currentCoupleWithLongestCommonWorkTime.emp1Id ||
-        empData.EmployeeId === currentCoupleWithLongestCommonWorkTime.emp2Id) &&
-      currentCoupleWithLongestCommonWorkTime.commonWorkedTime.projects.includes(
-        empData.ProjectId
-      )
-    ) {
-      return true;
-    }
-    return false;
-  });
+  console.log(currentCoupleWithLongestCommonWorkTime!);
+
+ return []
 };
 
 export const findDaysBetweenTwoDates = (

@@ -1,0 +1,33 @@
+.drop-box {
+  padding: 100px;
+  background-color: #add8e654;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px dotted #00ffff;
+  color: #00ffff;
+  font-weight: bold;
+  font-size: 30px;
+
+  .additional-info {
+    color: #ff00ff;
+    font-size: 20px;
+  }
+
+  .text-underlined {
+    text-decoration: underline;
+  }
+}
+
+.drop-box-container {
+  position: relative;
+
+ & input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+  }
+}

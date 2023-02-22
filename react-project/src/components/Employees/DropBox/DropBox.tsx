@@ -1,9 +1,15 @@
+import { Dispatch, FC, SetStateAction } from "react";
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { FormattedMessage } from "react-intl";
 import { EmployeeData } from "./constants";
 import { findDaysBetweenTwoDates, findPair } from "./utilities";
+import "./styles/DropBox.scss";
 
-export const DropBox = () => {
+type DropBoxProps = {
+  setEmployeeData: Dispatch<SetStateAction<EmployeeData[]>>;
+};
+
+export const DropBox: FC<DropBoxProps> = ({ setEmployeeData }) => {
   const fileReader = new FileReader();
 
   fileReader.onload = function (event) {
@@ -24,14 +30,10 @@ export const DropBox = () => {
         ProjectId,
         StartDate,
         EndDate,
-        DaysWorked: findDaysBetweenTwoDates(
-          new Date(EndDate),
-          new Date(StartDate)
-        ),
       };
     });
 
-    console.log(findPair(mappedData));
+    setEmployeeData(findPair(mappedData));
   };
 
   const handleOnInputChange = (e: any) => {
@@ -45,7 +47,7 @@ export const DropBox = () => {
       <input type="file" accept=".csv" onChange={handleOnInputChange} />
       <div className="drop-box">
         <div>
-          <MdOutlineCloudUpload size={50} color="rgb(25, 118, 210)" />
+          <MdOutlineCloudUpload size={70} color="#00FFFF" />
         </div>
         <div>
           <FormattedMessage id="1" defaultMessage="Drag & Drop or" />

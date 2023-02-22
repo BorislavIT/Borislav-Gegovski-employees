@@ -1,0 +1,9 @@
+.employees-table {
+   @media(min-width: 500px) {
+    width: 500px;
+   }
+
+   @media(min-width: 1000px) {
+    width: 1000px;
+   }
+}
