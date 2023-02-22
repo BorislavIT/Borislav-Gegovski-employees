@@ -1,5 +1,5 @@
 import { IntlProvider } from "react-intl";
-import { DropBox } from "./components/DropBox";
+import { DropBox } from "./components/DropBox/DropBox";
 import "./App.css";
 
 export default function App() {
