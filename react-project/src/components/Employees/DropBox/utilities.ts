@@ -2,7 +2,6 @@ import {
   EmployeeData,
   CommonWorkTimeAndCommonProjectsList,
   CommonWorkerCouple,
-  dayInMs,
 } from "./constants";
 
 export const findPairWithLongestCommonWorkTime = (
@@ -86,7 +85,7 @@ export const findPairWithLongestCommonWorkTime = (
   });
 };
 
-export const findPair = (csvData: EmployeeData[]): EmployeeData[] => {
+export const findPair = (csvData: EmployeeData[]): CommonWorkerCouple => {
   const mapOfEmployeeTotalTimes = new Map<
     string,
     Map<string, CommonWorkTimeAndCommonProjectsList>
@@ -111,14 +110,5 @@ export const findPair = (csvData: EmployeeData[]): EmployeeData[] => {
     });
   });
 
-  console.log(currentCoupleWithLongestCommonWorkTime!);
-
- return []
-};
-
-export const findDaysBetweenTwoDates = (
-  laterDate: Date,
-  earlierDate: Date
-): number => {
-  return Math.ceil((laterDate.getTime() - earlierDate.getTime()) / dayInMs);
+  return currentCoupleWithLongestCommonWorkTime!;
 };

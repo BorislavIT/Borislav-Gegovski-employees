@@ -1,15 +1,17 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { FormattedMessage } from "react-intl";
-import { EmployeeData } from "./constants";
-import { findDaysBetweenTwoDates, findPair } from "./utilities";
+import { CommonWorkerCouple, EmployeeData } from "./constants";
+import { findPair } from "./utilities";
 import "./styles/DropBox.scss";
 
 type DropBoxProps = {
-  setEmployeeData: Dispatch<SetStateAction<EmployeeData[]>>;
+  setCommonWorkerCouple: Dispatch<
+    SetStateAction<CommonWorkerCouple | undefined>
+  >;
 };
 
-export const DropBox: FC<DropBoxProps> = ({ setEmployeeData }) => {
+export const DropBox: FC<DropBoxProps> = ({ setCommonWorkerCouple }) => {
   const fileReader = new FileReader();
 
   fileReader.onload = function (event) {
@@ -33,7 +35,7 @@ export const DropBox: FC<DropBoxProps> = ({ setEmployeeData }) => {
       };
     });
 
-    setEmployeeData(findPair(mappedData));
+    setCommonWorkerCouple(findPair(mappedData));
   };
 
   const handleOnInputChange = (e: any) => {

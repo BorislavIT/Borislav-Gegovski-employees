@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { EmployeeData } from "./DropBox/constants";
+import { CommonWorkerCouple, EmployeeData } from "./DropBox/constants";
 import { DropBox } from "./DropBox/DropBox";
 import { EmployeesTable } from "./EmployeesTable/EmployeesTable";
 
 export const EmployeesData = () => {
-  const [employeeData, setEmployeeData] = useState<EmployeeData[]>([]);
+  const [commonWorkerCouple, setCommonWorkerCouple] = useState<
+    CommonWorkerCouple | undefined
+  >();
 
   return (
     <div className="employees-container">
-      {employeeData.length === 0 ? (
-        <DropBox setEmployeeData={setEmployeeData} />
+      {!commonWorkerCouple ? (
+        <DropBox setCommonWorkerCouple={setCommonWorkerCouple} />
       ) : (
-        <EmployeesTable employeeData={employeeData} />
+        <EmployeesTable commonWorkerCouple={commonWorkerCouple} />
       )}
     </div>
   );
