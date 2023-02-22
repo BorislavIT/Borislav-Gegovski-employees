@@ -1,6 +1,5 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { MdOutlineCloudUpload } from "react-icons/md";
-import { FormattedMessage } from "react-intl";
 import { CommonWorkerCouple, EmployeeData } from "./constants";
 import { findPair } from "./utilities";
 import "./styles/DropBox.scss";
@@ -50,18 +49,10 @@ export const DropBox: FC<DropBoxProps> = ({ setCommonWorkerCouple }) => {
           <MdOutlineCloudUpload size={70} color="#00FFFF" />
         </div>
         <div>
-          <FormattedMessage id="1" defaultMessage="Drag & Drop or" />
-          &nbsp;
-          <span className="text-underlined">
-            <FormattedMessage id="1" defaultMessage="Browse Files" />
-          </span>
+          Drag & Drop or&nbsp;
+          <span className="text-underlined">Browse Files</span>
         </div>
-        <div className="additional-info">
-          <FormattedMessage
-            id="2"
-            defaultMessage="Allowed file formats are: csv"
-          />
-        </div>
+        <div className="additional-info">Allowed file formats are: csv</div>
       </div>
     </div>
   );

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@formatjs/cli": "^6.0.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,7 +14,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
-    "react-intl": "^6.2.10",
     "react-scripts": "5.0.1",
     "sass": "^1.58.3",
     "typescript": "^4.9.5",
@@ -25,10 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "extract": "formatjs extract",
-    "compile": "formatjs compile-folder --ast lang ./src/compiled-lang",
-    "extract:en": "npm run extract -- \"src/**/*.ts*\" --ignore=\"**/*.d.ts\" --out-file=lang/en.json --id-interpolation-pattern=[sha512:contenthash:base64:6]"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
